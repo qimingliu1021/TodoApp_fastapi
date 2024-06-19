@@ -6,6 +6,7 @@ from fastapi.exceptions import HTTPException
 from ..models import Todos
 from ..database import SessionLocal
 from .auth import get_current_user
+# from passlib.context import CryptContext
 
 router = APIRouter(
   prefix='/admin', 
@@ -21,6 +22,7 @@ def get_db():
 
 db_dependency = Annotated[Session, Depends(get_db)]
 user_dependency = Annotated[dict, Depends(get_current_user)]
+# bcrypt_context = CryptContext(schemes=['bcrypt'], deprecated='auto')  
 
 
 @router.get("/todo", status_code=status.HTTP_200_OK)
